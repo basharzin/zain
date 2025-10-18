@@ -41,12 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer 1
-    uniqueID: 2158929181
+  - name: bachground
+    uniqueID: 1241995345
     locked: 0
-  - name: New Layer 2
-    uniqueID: 1412201191
+  - name: fgroung
+    uniqueID: 1776926073
     locked: 0
-  - name: New Layer 3
-    uniqueID: 1869304323
+  - name: lend
+    uniqueID: 1243049851
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 4208224201
     locked: 0
