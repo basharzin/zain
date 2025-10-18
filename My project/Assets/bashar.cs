@@ -2,58 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bashar : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed ; 
-    public float jumpHeight ; 
-    public KeyCode Spacebar ; 
-    public KeyCode L ;
-    public KeyCode R ; 
+    // Variables for movement
+    public float moveSpeed = 5f;
+    public float jumpForce = 10f;
+
+    // Components
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+
+    // Ground check
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask whatIsGround;
+    private bool isGrounded;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-         if (Input.GetKeyDown(Spacebar) && grounded)
-         {
-            Jump(); 
-         }
-         if (Input.Getkey(L))
-         {
+        float moveInput = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-           GetComponent<Rigidbody2D>().Velocity = New Vector2 (-moveSpeed, GetComponent<Rigidbody2D>().Velocity.y) ;
-        if (GeetComponent<Spriterenderer>()!=null){
+        // Flip player sprite based on direction
+        if (moveInput > 0)
+            spriteRenderer.flipX = false;
+        else if (moveInput < 0)
+            spriteRenderer.flipX = true;
 
-            GeetComponent<Spriterenderer>().flipx = true ; 
-        }
-
-         }
-         if (Input.Getkey(R))
-         {
-            GeetComponent<Rigidbody2D>().Velocity  = New Vector2 (moveSpeed, GetComponent<Rigidbody2D>().Velocity.y) ;
-         
-         if (GeetComponent<Spriterenderer>()!=null){
-
-            GeetComponent<Spriterenderer>().flipx = false ; 
-         }
-         
-         
-         
-         }
-        void Jump() 
+        // Jump only if grounded
+        if (isGrounded && Input.GetButtonDown("Jump"))
         {
-              GeetComponent<Rigidbody2D>().Velocity = New Vector2(GetComponent<Rigidbody2D>().Velocity.x,jumpHeight) ;
-         }
-
-
-      void FixedUpdata(){
-
-        grounded= Physics2D.OverlapCircle(groundCheck.position,groundCheckradius,whatISGround)
-      }
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 
+    // FixedUpdate is called at fixed intervals
+    void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+    }
+}
