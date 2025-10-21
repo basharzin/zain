@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Terrain Sliced (16x16)_7
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 1014701160, guid: 25cf25619e3ca0e479819b2ccf86c9aa, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
   m_Transform:
     e00: 1
     e01: 0
