@@ -18,10 +18,11 @@ public class bmen : MonoBehaviour
     public float groundCheckRadius; 
     public LayerMask whatIsGround; 
     private bool grounded; 
-
+    private Animator anim;
     
     void Start()
     {
+        anim = GetComponent<Animator>();
     }
 
     
@@ -66,6 +67,15 @@ public class bmen : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = false;
             }
         }
+
+        anim.SetFloat("Speed",Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+
+
+        anim.SetFloat("Height", GetComponent<Rigidbody2D>().velocity.y);
+
+
+        anim.SetBool("Grounded", grounded);
+
     }
 
 
